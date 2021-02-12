@@ -52,8 +52,11 @@ namespace Linq_Sorguları
             var result2 = kitaplar.Where(kitap => kitap.YazarId == 2).OrderByDescending(kitap => kitap.Id);//YazarId si 2 olan tüm kitapları id kısmı azalan olacak şekilde sıralayıp result a atar.
             var result3 = kitaplar.Where(kitap => kitap.YazarId == 2).OrderBy(kitap => kitap.Id).ThenBy(kitap=>kitap.TurNo);
             //YazarId si 2 olan tüm kitapları id kısmı azalan olacak şekilde daha sonra turno ya göre artan şekilde  sıralayıp result a atar.
-
-
+            var result6 = from k in kitaplar  //ikinci yöntem
+                          where k.YazarId == 2
+                         orderby k.Id ,k.TurNo ascending
+                          select k;
+            //Yukarıdaki kodun bir başka yöntem ile yapımı
             foreach (var item in result)
             {
                 Console.WriteLine("Id={0} Kitap Adi={1} Kitap Sayfası={2} ", item.Id, item.KitapAdi, item.SayfaSayisi);
